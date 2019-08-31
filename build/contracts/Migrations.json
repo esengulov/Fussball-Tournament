@@ -1377,12 +1377,12 @@
     "1567235984401": {
       "events": {},
       "links": {},
-      "address": "0x6f8ECAC0B950416425b615Ce745731c692b37773",
-      "transactionHash": "0xd7550dfee0b795c7bba7c7a583800537c05abce0d783e5878e74c7c90e15856f"
+      "address": "0xb1D7E351E52c2Ec94ED480f5E78F4c5688Dab876",
+      "transactionHash": "0x71e8442cabbbb3e8c38069a80999df4815a45dbb34206cf2e902f89abffdaf9d"
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-08-31T08:12:03.371Z",
+  "updatedAt": "2019-08-31T15:00:36.267Z",
   "devdoc": {
     "methods": {}
   },

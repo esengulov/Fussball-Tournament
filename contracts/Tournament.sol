@@ -47,7 +47,7 @@ contract Tournament is HSteam {
     uint private currentGame;
     
 
-    // TRACKING tournament parameters
+    // TRACKING tournament
     bool private registrationOpen;
     bool private tournamentOn;    
     uint private entryFee;
@@ -64,7 +64,8 @@ contract Tournament is HSteam {
 
     modifier entryReq() {
         require(isHSMember[msg.sender] == true); 
-        require(isPlayer[msg.sender] != true);
+        require ((teamCount*2) - 1 >= players.length, "all teams are full");             
+        require(isPlayer[msg.sender] != true);   
         require(msg.value >= entryFee);           
         _;
     }    
@@ -186,24 +187,26 @@ contract Tournament is HSteam {
         assert (tournamentOn == true && gamesPlayed == 0);
 
         // guarantee execution of the following method
-        require(ChooseNextGame());
+        require(selectGame());
     } 
 
+   // enable contract to accept ether transactions
+   function() external payable {}
 
 
 
-    // PUBLIC METHODS
 
-    function registerPlayer (string memory _name) public payable entryReq returns(uint _playerID) {
+    // PUBLIC SETTER METHODS
 
+    function registerPlayer (string memory _name) public payable entryReq returns(uint) {
+ 
         require(registrationOpen == true);
         require(tournamentOn == false);
         require(winnerSelection == false);             
 
         //create new Player _player 
         Player memory _player;
-        address payable newPlayer = msg.sender;
-        _player.addr = newPlayer;
+        _player.addr = msg.sender;
         _player.goalsScored = 0;
         _player.id = players.length;
         _player.name = _name;
@@ -211,34 +214,29 @@ contract Tournament is HSteam {
 
         // store new _player
         players.push(_player);
-        isPlayer[newPlayer] = true;
+        isPlayer[msg.sender] = true;
 
-        // assign player to a team
+        //assign player to a team
         _assignTeam(_player.id);
         
         // start tournament when enough players
         if (players.length / 2 == teamCount) {
-            registrationOpen == false;
-            _startTournament();                        
+            registrationOpen = false;
+            _startTournament();                         
         }
 
         return players[_player.id].id;
-
     }
     
-    
-    
-    
-    
-    
-    
+    function selectGame() public onlyHS returns(bool) {
 
-   
-    function ChooseNextGame() public onlyHS returns(bool) {
 
+        //require (gamesPlayed <= games.length);
+        
         require(registrationOpen == false);       
         require(tournamentOn == true);
         require(winnerSelection == false);
+
         
         if(gamesPlayed == games.length) {
  
@@ -270,9 +268,46 @@ contract Tournament is HSteam {
                     currentGame = _currentGame;
                     return true;
                 }
-        }    
-       
+        }           
+    }   
+
+
+
+   // PUBLIC GETTER METHODS
+
+    function registrationStatus() public view returns(uint, uint, uint, uint, bool, bool, bool) {
+        uint _balance = address(this).balance;
+        uint _entryFee = entryFee;
+        uint _teams = teams.length;
+        uint _registeredPlayers = players.length;
+        bool _registrationOpen = registrationOpen;
+        bool _tournamentOn = tournamentOn;
+        bool _winnerSelection = winnerSelection;
+        return (_balance, _entryFee, _teams, _registeredPlayers, _registrationOpen, _tournamentOn, _winnerSelection);
     }
+
+    function tournamentStatus() public view returns(uint, uint, uint) {
+        uint _totalGames = games.length;
+        uint _gamesPlayed = gamesPlayed;
+        uint _currentGame = currentGame;
+        return (_totalGames, _gamesPlayed, _currentGame);
+    }
+
+
+    // TO DO
+    // try deploying on prepare testnet (rinkeby, kova)
+    // make sure that team allocations are random
+    // run trials
+
+   
+   
+
+
+
+
+
+
+
    
    
    
@@ -321,7 +356,7 @@ contract Tournament is HSteam {
         games[currentGame].played = true;        
         gamesPlayed ++;
         
-        require(ChooseNextGame());
+        require(selectGame());
        
    }
  
@@ -430,35 +465,14 @@ contract Tournament is HSteam {
   
    
      
-   // enable contract to accept ether transactions
 
-   function() external payable {
-     
-   }
 
 
   
    
-   // GETTER METHODS
-
-    function getRegistrationStatus() public view returns(bool) {
-        return registrationOpen;
-    }
 
 
-    function getTournamentStatus() public view returns(bool) {
-        return tournamentOn;
-    }
 
-
-    function getTotalGames() public view returns(uint) {
-       return games.length;
-    }
-
-
-    function getGamesPlayed() public view returns(uint) {
-       return gamesPlayed;
-    }
 
 
     function getCurrentGame() public view returns(uint _gameID, uint _team1ID, uint _team2ID) {
@@ -474,19 +488,7 @@ contract Tournament is HSteam {
     }
 
 
-    function getBalance() public view returns(uint) {
-       return address(this).balance;
-    }
-    
-    function getEntryFee() public view returns(uint) {
-       return entryFee;
-    }
-    
 
-
-    function getNumberTeams() public view returns(uint) {
-       return teams.length;
-    }
 
 
     function getTeam(uint _id) public view returns(string memory, uint, uint, uint, uint, uint, uint) {

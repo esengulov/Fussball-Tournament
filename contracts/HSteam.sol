@@ -2,14 +2,16 @@
 
 pragma solidity ^0.5.1;
 
-// contract for storing team data
 
 contract HSteam {
 
 	// tracking team members
     mapping (address => bool) isHSMember;
+    address private owner;
     
 	constructor() public {
+
+		owner = msg.sender;
 
 		// initializing initial members of the team
 
@@ -24,7 +26,15 @@ contract HSteam {
 		isHSMember[0x5136f6f47a2d2610BF816bA5def8dF9E2e514eCA] = true;
 		isHSMember[0x3364e60e2DD46278f940bfC545E2196d2D290B13] = true;
 		isHSMember[0x96F615b37843acE26fB1182ebEfa3eAb22A01BDb] = true;
-		isHSMember[0x53c582B9431aBeF3F6513A136443e9304c2C21B2] = true;		
-	}	
+		isHSMember[0x53c582B9431aBeF3F6513A136443e9304c2C21B2] = true;
+
+	}
+
+
+	function addMember (address _addr) public returns(bool) {
+		require (msg.sender == owner);
+		isHSMember[_addr] = true;
+	}
+	
     
 }
