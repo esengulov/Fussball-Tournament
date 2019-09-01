@@ -60,6 +60,8 @@ contract Tournament is HSteam {
 
     bool private contractInitialized;
 
+    uint private lastRegistration;
+
     
 
     modifier entryReq() {
@@ -91,7 +93,9 @@ contract Tournament is HSteam {
 
         contractInitialized = false;
         _generateTeams();
-        assert (contractInitialized == true);              
+        assert (contractInitialized == true); 
+
+        lastRegistration = 0;             
     }
 
     // INTERNAL METHODS 
@@ -116,35 +120,33 @@ contract Tournament is HSteam {
         contractInitialized = true;
     }  
     
-    function _assignTeam (uint _playerID) internal {
+    function _assignTeam (uint _id) internal {
 
-        require(players[_playerID].inTeam == false);
+        require(players[_id].inTeam == false, "already registered!");
 
         // should randomly assign the player to one of the teams
         // should ensure that it works as expected
-        uint _teamID = block.gaslimit % teamCount;
+        uint _teamID = (block.gaslimit) % teamCount;
 
-        for(uint i = 0; i < teamCount - 1; i++) {
+        for(uint i = 0; i < teamCount; i++) {
 
             uint _toCheck = (_teamID + i) % teamCount;
 
             if(teams[_toCheck].player1 == 1000) {
-                teams[_toCheck].player1 = _playerID;
-                assert(teams[_toCheck].player1 == _playerID);
+                teams[_toCheck].player1 = _id;
+                assert(teams[_toCheck].player1 == _id);
                 break;
             } else if (teams[_toCheck].player2 == 1000) {
-                teams[_toCheck].player2 = _playerID;
-                assert(teams[_toCheck].player2 == _playerID);                
+                teams[_toCheck].player2 = _id;
+                assert(teams[_toCheck].player2 == _id);                
                 break;
             }
 
         }
 
-
-
         // stores new state
-        players[_playerID].inTeam = true;
-        assert (players[_playerID].inTeam == true);
+        players[_id].inTeam = true;
+        assert (players[_id].inTeam == true);
     }
     
     function _finishTournament() internal returns(bool) {
@@ -202,7 +204,14 @@ contract Tournament is HSteam {
  
         require(registrationOpen == true);
         require(tournamentOn == false);
-        require(winnerSelection == false);             
+        require(winnerSelection == false);
+
+        // to ensure randomness in team allocation
+        // as an idea consider restricting one 
+        // user registration per block
+
+        //require (lastRegistration > block.timestamp, "Another user has already regsitered in this block. Try again in a few min");
+        
 
         //create new Player _player 
         Player memory _player;
@@ -213,8 +222,9 @@ contract Tournament is HSteam {
         _player.inTeam = false;
 
         // store new _player
-        players.push(_player);
+        players.push(_player);        
         isPlayer[msg.sender] = true;
+        lastRegistration = block.timestamp;
 
         //assign player to a team
         _assignTeam(_player.id);
@@ -224,6 +234,7 @@ contract Tournament is HSteam {
             registrationOpen = false;
             _startTournament();                         
         }
+
 
         return players[_player.id].id;
     }
@@ -295,12 +306,23 @@ contract Tournament is HSteam {
 
 
     // TO DO
-    // try deploying on prepare testnet (rinkeby, kova)
+    // try deploying on proper testnet (rinkeby, kovan)
     // make sure that team allocations are random
     // run trials
 
+    function getTeam(uint _id) public view returns(uint, uint, uint, uint, uint, uint) {
+        uint _player1 = teams[_id].player1;
+        uint _player2 = teams[_id].player2;
+        uint _gamesPlayed = teams[_id].gamesPlayed;        
+        uint _goalsScored = teams[_id].goalsScored;
+        uint _goalsMissed = teams[_id].goalsMissed;
+        uint _gamesWon = teams[_id].gamesWon;
+        return (_player1, _player2, _gamesPlayed, _goalsScored, _goalsMissed, _gamesWon);
+    }
    
-   
+
+
+
 
 
 
@@ -491,16 +513,6 @@ contract Tournament is HSteam {
 
 
 
-    function getTeam(uint _id) public view returns(string memory, uint, uint, uint, uint, uint, uint) {
-        string memory _name = teams[_id].name;
-        uint _player1 = teams[_id].player1;
-        uint _player2 = teams[_id].player2;
-        uint _gamesPlayed = teams[_id].gamesPlayed;        
-        uint _goalsScored = teams[_id].goalsScored;
-        uint _goalsMissed = teams[_id].goalsMissed;
-        uint _gamesWon = teams[_id].gamesWon;
-       return (_name, _player1, _player2, _gamesPlayed, _goalsScored, _goalsMissed, _gamesWon);
-    }
 
 
     function getPlayer(uint _id) public view returns(address, uint) {
