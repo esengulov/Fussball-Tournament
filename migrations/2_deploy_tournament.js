@@ -32,10 +32,11 @@ module.exports = async function(deployer) {
 	console.log(">> games played: " + gamingStatus[1]);
 	console.log(">> current game: " + gamingStatus[2]);	
 
+
 	// create dummy HSmembers
 	// for testing purposes
-	console.log(">> adding dummy HS members");
-	let accounts = await web3.eth.getAccounts();	
+	let accounts = await web3.eth.getAccounts();
+	console.log(">> adding dummy HS members");	
 	await tournament.addMember(accounts[0], {from: accounts[0]});
 	await tournament.addMember(accounts[1], {from: accounts[0]});
 	await tournament.addMember(accounts[2], {from: accounts[0]});	
@@ -89,7 +90,7 @@ module.exports = async function(deployer) {
 	// first step work with real test net, Rinkeby
 	// setup geth client
 
-
+	console.log("*** TEAMS ***");
 	let team1 = await tournament.getTeam(0);
 	console.log("Team 1: " + team1[0] + " and " + team1[1]);
 
@@ -100,13 +101,46 @@ module.exports = async function(deployer) {
 	console.log("Team 3: " + team3[0] + " and " + team3[1]);
 
 	let team4 = await tournament.getTeam(3);
-	console.log("Team 3: " + team4[0] + " and " + team4[1]);
+	console.log("Team 4: " + team4[0] + " and " + team4[1]);
 
 	let team5 = await tournament.getTeam(4);
-	console.log("Team 3: " + team5[0] + " and " + team5[1]);
+	console.log("Team 5: " + team5[0] + " and " + team5[1]);
 
 	let team6 = await tournament.getTeam(5);
 	console.log("Team 6: " + team6[0] + " and " + team6[1]);
+
+
+
+	// START GAMES
+	// first game
+
+	console.log("*** GAMES ***");
+	let playingGame = gamingStatus2[2];
+	console.log("first game id: " + playingGame);
+
+	let firstGame = await tournament.getGame(playingGame);
+	//console.log(firstGame)
+	// firstGame[0] // team1 id
+	// firstGame[1] // team2 id
+	let game1team1 = await tournament.getTeam(firstGame[0]);
+	let game1team2 = await tournament.getTeam(firstGame[1]);
+	// game1team1[0] // player1
+	// game1team1[1] // player2
+
+	let t1p1 = await tournament.getPlayer(game1team1[0]);
+	let t1p2 = await tournament.getPlayer(game1team1[1]);
+
+	let t2p1 = await tournament.getPlayer(game1team2[0]);
+	let t2p2 = await tournament.getPlayer(game1team2[1]);
+
+	console.log(t1p1 + " + " + t1p2 + " || " + t2p1 + " + " + t2p2);
+
+	console.log("finishing the game: 3, 2 // 1, 3")
+	tournament.finishGame(3, 2, 1, 3);
+
+	let nextGame = await tournament.getCurrentGame();
+	console.log("next game id: " + nextGame[0]);
+
 
 
 
@@ -114,8 +148,10 @@ module.exports = async function(deployer) {
 
 
 
+// async function currentGame(_game) {
 
 
+// }
 
 
 

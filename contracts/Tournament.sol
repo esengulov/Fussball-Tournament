@@ -193,7 +193,7 @@ contract Tournament is HSteam {
     } 
 
    // enable contract to accept ether transactions
-   function() external payable {}
+    function() external payable {}
 
 
 
@@ -282,58 +282,7 @@ contract Tournament is HSteam {
         }           
     }   
 
-
-
-   // PUBLIC GETTER METHODS
-
-    function registrationStatus() public view returns(uint, uint, uint, uint, bool, bool, bool) {
-        uint _balance = address(this).balance;
-        uint _entryFee = entryFee;
-        uint _teams = teams.length;
-        uint _registeredPlayers = players.length;
-        bool _registrationOpen = registrationOpen;
-        bool _tournamentOn = tournamentOn;
-        bool _winnerSelection = winnerSelection;
-        return (_balance, _entryFee, _teams, _registeredPlayers, _registrationOpen, _tournamentOn, _winnerSelection);
-    }
-
-    function tournamentStatus() public view returns(uint, uint, uint) {
-        uint _totalGames = games.length;
-        uint _gamesPlayed = gamesPlayed;
-        uint _currentGame = currentGame;
-        return (_totalGames, _gamesPlayed, _currentGame);
-    }
-
-
-    // TO DO
-    // try deploying on proper testnet (rinkeby, kovan)
-    // make sure that team allocations are random
-    // run trials
-
-    function getTeam(uint _id) public view returns(uint, uint, uint, uint, uint, uint) {
-        uint _player1 = teams[_id].player1;
-        uint _player2 = teams[_id].player2;
-        uint _gamesPlayed = teams[_id].gamesPlayed;        
-        uint _goalsScored = teams[_id].goalsScored;
-        uint _goalsMissed = teams[_id].goalsMissed;
-        uint _gamesWon = teams[_id].gamesWon;
-        return (_player1, _player2, _gamesPlayed, _goalsScored, _goalsMissed, _gamesWon);
-    }
-   
-
-
-
-
-
-
-
-
-
-
-   
-   
-   
-    function finishGame (uint goalst1p1, uint goalst1p2, uint goalst2p1, uint goalst2p2) public {
+    function finishGame (uint goalst1p1, uint goalst1p2, uint goalst2p1, uint goalst2p2) public onlyHS returns(uint) {
        
         require(games[currentGame].played == false);
         // check that call made by team captain or player2
@@ -378,10 +327,98 @@ contract Tournament is HSteam {
         games[currentGame].played = true;        
         gamesPlayed ++;
         
+        uint _existingGame = currentGame;
+        
         require(selectGame());
-       
-   }
+
+        assert(_existingGame != currentGame);
+        
+        return currentGame; 
+    }
  
+
+
+   // PUBLIC GETTER METHODS
+
+    function registrationStatus() public view returns(uint, uint, uint, uint, bool, bool, bool) {
+        uint _balance = address(this).balance;
+        uint _entryFee = entryFee;
+        uint _teams = teams.length;
+        uint _registeredPlayers = players.length;
+        bool _registrationOpen = registrationOpen;
+        bool _tournamentOn = tournamentOn;
+        bool _winnerSelection = winnerSelection;
+        return (_balance, _entryFee, _teams, _registeredPlayers, _registrationOpen, _tournamentOn, _winnerSelection);
+    }
+
+    function tournamentStatus() public view returns(uint, uint, uint)  {
+        uint _totalGames = games.length;
+        uint _gamesPlayed = gamesPlayed;
+        uint _currentGame = currentGame;
+        return (_totalGames, _gamesPlayed, _currentGame);
+    }
+
+
+    // TO DO
+    // try deploying on proper testnet (rinkeby, kovan)
+    // make sure that team allocations are random
+    // run trials
+
+    function getTeam(uint _id) public view onlyHS returns(uint, uint, uint, uint, uint, uint) {
+        uint _player1 = teams[_id].player1;
+        uint _player2 = teams[_id].player2;
+        uint _gamesPlayed = teams[_id].gamesPlayed;        
+        uint _goalsScored = teams[_id].goalsScored;
+        uint _goalsMissed = teams[_id].goalsMissed;
+        uint _gamesWon = teams[_id].gamesWon;
+        return (_player1, _player2, _gamesPlayed, _goalsScored, _goalsMissed, _gamesWon);
+    } 
+
+    function getGame(uint _id) public view onlyHS returns(uint, uint, bool, uint, uint, uint, uint) {
+       
+        uint _team1 = games[_id].team1;  
+        uint _t1p1 = teams[_team1].player1;
+        uint _t1p2 = teams[_team1].player2;
+
+        uint _team2 = games[_id].team2;        
+        uint _t2p1 = teams[_team2].player1;
+        uint _t2p2 = teams[_team2].player2;                  
+
+        bool _played = games[_id].played;
+
+        return (_team1, _team2, _played, _t1p1, _t1p2, _t2p1, _t2p2);
+    }
+
+    function getPlayer(uint _id) public view returns(string memory) {
+        //require (_id == players[_id].id);
+        string memory _name = players[_id].name;
+        return _name;
+    } 
+
+    function getCurrentGame() public view returns(uint, string memory, string memory, string memory, string memory) {
+
+        require (currentGame != 100);
+
+        uint _team1ID = games[currentGame].team1; 
+        uint _team2ID = games[currentGame].team2;
+
+        uint _t1p1 = teams[_team1ID].player1;
+        string memory t1p1_name = players[_t1p1].name;
+
+        uint _t1p2 = teams[_team1ID].player2;
+        string memory t1p2_name = players[_t1p2].name;
+
+        uint _t2p1 = teams[_team2ID].player1;
+        string memory t2p1_name = players[_t2p1].name;
+
+        uint _t2p2 = teams[_team2ID].player2;
+        string memory t2p2_name = players[_t2p2].name;                    
+
+        return (currentGame, t1p1_name, t1p2_name, t2p1_name, t2p2_name);
+
+    }
+   
+   
    
 
    
@@ -497,42 +534,15 @@ contract Tournament is HSteam {
 
 
 
-    function getCurrentGame() public view returns(uint _gameID, uint _team1ID, uint _team2ID) {
-    
-        if(currentGame !=100) {
-            uint team1ID = games[currentGame].team1; 
-            uint team2ID = games[currentGame].team2; 
-            return (currentGame, team1ID, team2ID);
-        } else {
-            return (100,100,100);
-        }
-    
-    }
 
 
 
 
 
-
-
-    function getPlayer(uint _id) public view returns(address, uint) {
-        address _addr = players[_id].addr;
-        uint _goalsScored = players[_id].goalsScored;
-        return (_addr, _goalsScored);
-    }        
-   
-   
-    function getGame(uint _id) public view returns(string memory, string memory, bool) {
        
-        uint _team1 = games[_id].team1;
-        string memory _name1 = teams[_team1].name;
-        
-        uint _team2 = games[_id].team2;
-        string memory _name2 = teams[_team2].name;        
-        
-        bool _played = games[_id].played;
-        return (_name1, _name2, _played);
-    }
+   
+   
+
     
 
     function getWinners() public view returns(string memory, address) {
