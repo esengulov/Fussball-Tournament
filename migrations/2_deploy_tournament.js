@@ -138,20 +138,20 @@ module.exports = async function(deployer) {
 	console.log("finishing the game: 3, 2 // 1, 3")
 	tournament.finishGame(3, 2, 1, 3);
 
+	//
 	let nextGame = await tournament.getCurrentGame();
-	console.log("next game id: " + nextGame[0]);
+	console.log("second game id: " + nextGame[0]);
+	console.log(nextGame[1] + " + " + nextGame[2] + " || " + nextGame[3] + " + " + nextGame[4]);
 
-
+	tournament.finishGame(5, 1, 4, 3);
+	console.log("finishing the game: 5, 1 // 4, 3")
 
 
 };
 
 
 
-// async function currentGame(_game) {
 
-
-// }
 
 
 
