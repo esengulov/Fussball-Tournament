@@ -112,44 +112,58 @@ module.exports = async function(deployer) {
 
 
 	// START GAMES
-	// first game
+	// consider using getGame insead 
+	// getGame();function commented below
 
-	console.log("*** GAMES ***");
-	let playingGame = gamingStatus2[2];
-	console.log("first game id: " + playingGame);
+	console.log("*** GAMES SET ***");
 
-	let firstGame = await tournament.getGame(playingGame);
-	//console.log(firstGame)
-	// firstGame[0] // team1 id
-	// firstGame[1] // team2 id
-	let game1team1 = await tournament.getTeam(firstGame[0]);
-	let game1team2 = await tournament.getTeam(firstGame[1]);
-	// game1team1[0] // player1
-	// game1team1[1] // player2
+	let firstGame = await tournament.getCurrentGame();
+	console.log("first game id: " + firstGame[0]);
+	console.log(">> " + firstGame[1] + " + " + firstGame[2] + " || " + firstGame[3] + " + " + firstGame[4]);
+	console.log(">> finish: 3, 2 // 1, 3")
+	await tournament.finishGame(3, 2, 1, 3);
 
-	let t1p1 = await tournament.getPlayer(game1team1[0]);
-	let t1p2 = await tournament.getPlayer(game1team1[1]);
+	let secondGame = await tournament.getCurrentGame();
+	console.log("second game id: " + secondGame[0]);
+	console.log(">> " + secondGame[1] + " + " + secondGame[2] + " || " + secondGame[3] + " + " + secondGame[4]);
+	console.log(">> finish: 5, 1 // 4, 3")
+	await tournament.finishGame(5, 1, 4, 3);
 
-	let t2p1 = await tournament.getPlayer(game1team2[0]);
-	let t2p2 = await tournament.getPlayer(game1team2[1]);
+	let thirdGame = await tournament.getCurrentGame();
+	console.log("third game id: " + thirdGame[0]);
+	console.log(">> " + thirdGame[1] + " + " + thirdGame[2] + " || " + thirdGame[3] + " + " + thirdGame[4]);
+	console.log(">> finish: 3, 2 // 1, 3")
+	await tournament.finishGame(3, 2, 1, 3);
 
-	console.log(t1p1 + " + " + t1p2 + " || " + t2p1 + " + " + t2p2);
+	let fourthGame = await tournament.getCurrentGame();
+	console.log("foruth game id: " + fourthGame[0]);
+	console.log(">> " + fourthGame[1] + " + " + fourthGame[2] + " || " + fourthGame[3] + " + " + fourthGame[4]);
+	console.log(">> finish: 4, 2 // 3, 3")
+	await tournament.finishGame(4, 2, 3, 3);
 
-	console.log("finishing the game: 3, 2 // 1, 3")
-	tournament.finishGame(3, 2, 1, 3);
 
-	//
-	let nextGame = await tournament.getCurrentGame();
-	console.log("second game id: " + nextGame[0]);
-	console.log(nextGame[1] + " + " + nextGame[2] + " || " + nextGame[3] + " + " + nextGame[4]);
-
-	tournament.finishGame(5, 1, 4, 3);
-	console.log("finishing the game: 5, 1 // 4, 3")
 
 
 };
 
 
+
+// async function getGame() {
+// 	console.log(".....")
+// 	await tournament.getCurrentGame(function(err, result) {
+// 		if(!err) {
+// 			console.log("Game ID: " + result[0]);
+// 			console.log(">> " + result[1] + " + " + result[2] + " || " + result[3] + " + " + result[4]);
+// 			console.log(">> finish: 4, 2 // 3, 3")
+// 		} else {
+// 			console.log(err);
+// 		}
+
+// 	});
+
+// 	await tournament.finishGame(4, 2, 3, 3);
+
+// };
 
 
 
