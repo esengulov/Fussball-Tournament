@@ -251,8 +251,8 @@ contract Tournament is HSteam {
         
         if(gamesPlayed == games.length) {
  
-                currentGame = 100;
-                _finishTournament();
+                // currentGame = 100;
+                // _finishTournament();
                 return true;           
            
         } else {
@@ -327,11 +327,11 @@ contract Tournament is HSteam {
         games[currentGame].played = true;        
         gamesPlayed ++;
         
-        uint _existingGame = currentGame;
+        //uint _existingGame = currentGame;
         
         require(selectGame());
 
-        assert(_existingGame != currentGame);
+        // assert(_existingGame != currentGame);
         
         return currentGame; 
     }
