@@ -31,8 +31,10 @@ module.exports = async function(deployer) {
 		console.log(">> total games: " + gamingStatus[0]);
 		console.log(">> games played: " + gamingStatus[1]);
 		console.log(">> current game: " + gamingStatus[2]);	
-		console.log(">> winners selected: " + status[6]);		
+		console.log(">> winners selected: " + status[6]);
+		console.log("------------------------------------")		
 	}
+	// display status
 	await getStatus();
 
 
@@ -50,23 +52,25 @@ module.exports = async function(deployer) {
 	await addMembers();
 
 
-
-	// register dummy HS members as players
-	console.log(">> registering dummy HS members as players");	
-	await tournament.registerPlayer("aibek", {from: accounts[0], value:100});
-	await tournament.registerPlayer("kerim", {from: accounts[1], value:100});
-	await tournament.registerPlayer("diana", {from: accounts[2], value:100});
-	await tournament.registerPlayer("ermat", {from: accounts[3], value:100});
-	await tournament.registerPlayer("chyngyz", {from: accounts[4], value:100});
-	await tournament.registerPlayer("bakyt", {from: accounts[5], value:100});
-	await tournament.registerPlayer("esen", {from: accounts[6], value:100});
-	await tournament.registerPlayer("talgazainer", {from: accounts[7], value:100});
-	await tournament.registerPlayer("nurkaly", {from: accounts[8], value:100});
-	await tournament.registerPlayer("talgat", {from: accounts[9], value:100});
-	await tournament.registerPlayer("anton", {from: accounts[10], value:100});
-	await tournament.registerPlayer("arslan", {from: accounts[11], value:100});
-	// should revert with "all teams are full" error
-	// await tournament.registerPlayer("aibek", {from: accounts[12], value:100});
+	// REGISTER PLAYERS
+	var registerPlayers = async function() {
+		console.log(">> registering dummy HS members as players");	
+		await tournament.registerPlayer("aibek", {from: accounts[0], value:100});
+		await tournament.registerPlayer("kerim", {from: accounts[1], value:100});
+		await tournament.registerPlayer("diana", {from: accounts[2], value:100});
+		await tournament.registerPlayer("ermat", {from: accounts[3], value:100});
+		await tournament.registerPlayer("chyngyz", {from: accounts[4], value:100});
+		await tournament.registerPlayer("bakyt", {from: accounts[5], value:100});
+		await tournament.registerPlayer("esen", {from: accounts[6], value:100});
+		await tournament.registerPlayer("talgazainer", {from: accounts[7], value:100});
+		await tournament.registerPlayer("nurkaly", {from: accounts[8], value:100});
+		await tournament.registerPlayer("talgat", {from: accounts[9], value:100});
+		await tournament.registerPlayer("anton", {from: accounts[10], value:100});
+		await tournament.registerPlayer("arslan", {from: accounts[11], value:100});
+		// should revert with "all teams are full" error
+		// await tournament.registerPlayer("aibek", {from: accounts[12], value:100});
+	}	
+	await registerPlayers();
 
 
 	// LIST TEAMS
@@ -78,8 +82,7 @@ module.exports = async function(deployer) {
 		}
 	};
 	await listTeams();
-
-
+	// display status
 	await getStatus();
 
 
@@ -107,7 +110,7 @@ module.exports = async function(deployer) {
 		};	
 	};
 	await runGames();
-
+	await getStatus();
 
 
 };

@@ -156,10 +156,10 @@ contract Tournament is HSteam {
             require(winnerSelection == false);
             require(gamesPlayed == games.length);
                    
-            currentGame = 100;
+            //currentGame = 100;
             tournamentOn = false;               
             winnerSelection = true;
-            assert(currentGame == 100 && winnerSelection == true && tournamentOn == true);       
+            assert(currentGame == 100 && winnerSelection == true && tournamentOn == false);       
 
             //_selectWinners();
             return true;
@@ -251,8 +251,8 @@ contract Tournament is HSteam {
         
         if(gamesPlayed == games.length) {
  
-                // currentGame = 100;
-                // _finishTournament();
+                currentGame = 100;
+                _finishTournament();
                 return true;           
            
         } else {

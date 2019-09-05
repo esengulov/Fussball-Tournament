@@ -27,15 +27,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_addr\",\"type\":\"address\"}],\"name\":\"addMember\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/ibek/Documents/code/fussball/contracts/HSteam.sol\":\"HSteam\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/ibek/Documents/code/fussball/contracts/HSteam.sol\":{\"keccak256\":\"0x6c0b25547f53f988935855e17e3f45a0c24cbbbc04a15fd0779b2178dda1495e\",\"urls\":[\"bzzr://4e542e340f3115c8f4d077e8166129fc7b5424c18f54cc6ce6d51903e08a24b1\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5033600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600160008073d26c9acfefa3edb09754fc738b672172dd3c3dd373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160008073334b82b6378b586c2030a01630e19e08eaa3da2973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055506001600080737566f6b575280db591e7329a0b22a27d375884c773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160008073a70a13b44a7262f32a5fe3b2672a27d6bf246cb273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160008073e8cbe210c1fccf8d62c85932cc3d3308264f140d73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555060016000807365f2eec860ab34bc8a8f758ca45d311fa754637473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160008073df8f4f70153267a1eb4c39865f1508c0d51a083b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055506001600080735e5b6d393410a5febefde50806efe5e578b8ebbb73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055506001600080735136f6f47a2d2610bf816ba5def8df9e2e514eca73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055506001600080733364e60e2dd46278f940bfc545e2196d2d290b1373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555060016000807396f615b37843ace26fb1182ebefa3eab22a01bdb73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555060016000807353c582b9431abef3f6513a136443e9304c2c21b273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550610170806105656000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063ca6d56dc14610030575b600080fd5b6100726004803603602081101561004657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061008c565b604051808215151515815260200191505060405180910390f35b6000600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146100e857600080fd5b60016000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555091905056fea165627a7a72305820b794aa4bb6e056c1e5814b1ec8985967f9f28e65ad394ec2150cb51177ee62c50029",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063ca6d56dc14610030575b600080fd5b6100726004803603602081101561004657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061008c565b604051808215151515815260200191505060405180910390f35b6000600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146100e857600080fd5b60016000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555091905056fea165627a7a72305820b794aa4bb6e056c1e5814b1ec8985967f9f28e65ad394ec2150cb51177ee62c50029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_addr\",\"type\":\"address\"}],\"name\":\"addMember\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/esengulov/Documents/code/fussball/contracts/HSteam.sol\":\"HSteam\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/esengulov/Documents/code/fussball/contracts/HSteam.sol\":{\"keccak256\":\"0x6c0b25547f53f988935855e17e3f45a0c24cbbbc04a15fd0779b2178dda1495e\",\"urls\":[\"bzzr://4e542e340f3115c8f4d077e8166129fc7b5424c18f54cc6ce6d51903e08a24b1\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5033600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600160008073d26c9acfefa3edb09754fc738b672172dd3c3dd373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160008073334b82b6378b586c2030a01630e19e08eaa3da2973ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055506001600080737566f6b575280db591e7329a0b22a27d375884c773ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160008073a70a13b44a7262f32a5fe3b2672a27d6bf246cb273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160008073e8cbe210c1fccf8d62c85932cc3d3308264f140d73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555060016000807365f2eec860ab34bc8a8f758ca45d311fa754637473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600160008073df8f4f70153267a1eb4c39865f1508c0d51a083b73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055506001600080735e5b6d393410a5febefde50806efe5e578b8ebbb73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055506001600080735136f6f47a2d2610bf816ba5def8df9e2e514eca73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055506001600080733364e60e2dd46278f940bfc545e2196d2d290b1373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555060016000807396f615b37843ace26fb1182ebefa3eab22a01bdb73ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555060016000807353c582b9431abef3f6513a136443e9304c2c21b273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550610170806105656000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063ca6d56dc14610030575b600080fd5b6100726004803603602081101561004657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061008c565b604051808215151515815260200191505060405180910390f35b6000600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146100e857600080fd5b60016000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555091905056fea165627a7a72305820891a6b9394e4212bdb33906938829ef07404278821b5eb96cee292d8f2990ad30029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063ca6d56dc14610030575b600080fd5b6100726004803603602081101561004657600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061008c565b604051808215151515815260200191505060405180910390f35b6000600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146100e857600080fd5b60016000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690831515021790555091905056fea165627a7a72305820891a6b9394e4212bdb33906938829ef07404278821b5eb96cee292d8f2990ad30029",
   "sourceMap": "28:1131:0:-;;;148:877;8:9:-1;5:2;;;30:1;27;20:12;5:2;148:877:0;182:10;174:5;;:18;;;;;;;;;;;;;;;;;;301:4;244:10;:54;255:42;244:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;366:4;309:10;:54;320:42;309:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;431:4;374:10;:54;385:42;374:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;496:4;439:10;:54;450:42;439:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;561:4;504:10;:54;515:42;504:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;626:4;569:10;:54;580:42;569:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;691:4;634:10;:54;645:42;634:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;756:4;699:10;:54;710:42;699:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;821:4;764:10;:54;775:42;764:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;886:4;829:10;:54;840:42;829:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;951:4;894:10;:54;905:42;894:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;1016:4;959:10;:54;970:42;959:54;;;;;;;;;;;;;;;;:61;;;;;;;;;;;;;;;;;;28:1131;;;;;;",
   "deployedSourceMap": "28:1131:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;28:1131:0;;;;;;;;;;;;;;;;;;;1029:121;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1029:121:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;1079:4;1112:5;;;;;;;;;;;1098:19;;:10;:19;;;1089:29;;;;;;1142:4;1122:10;:17;1133:5;1122:17;;;;;;;;;;;;;;;;:24;;;;;;;;;;;;;;;;;;1029:121;;;:::o",
   "source": "\n\npragma solidity ^0.5.1;\n\n\ncontract HSteam {\n\n\t// tracking team members\n    mapping (address => bool) isHSMember;\n    address private owner;\n    \n\tconstructor() public {\n\n\t\towner = msg.sender;\n\n\t\t// initializing initial members of the team\n\n\t\tisHSMember[0xd26c9AcfeFa3EDb09754FC738B672172Dd3c3Dd3] = true;\n\t\tisHSMember[0x334b82B6378B586C2030a01630E19e08Eaa3dA29] = true;\n\t\tisHSMember[0x7566F6b575280dB591E7329A0B22A27D375884c7] = true;\n\t\tisHSMember[0xA70a13b44A7262F32A5Fe3b2672A27d6Bf246CB2] = true;\n\t\tisHSMember[0xe8cBe210C1fCCF8d62C85932Cc3D3308264f140D] = true;\n\t\tisHSMember[0x65F2EeC860Ab34BC8A8f758cA45d311fA7546374] = true;\n\t\tisHSMember[0xdF8f4f70153267A1eb4c39865f1508C0D51a083B] = true;\n\t\tisHSMember[0x5e5b6d393410A5FEbEFde50806eFE5e578b8eBBB] = true;\n\t\tisHSMember[0x5136f6f47a2d2610BF816bA5def8dF9E2e514eCA] = true;\n\t\tisHSMember[0x3364e60e2DD46278f940bfC545E2196d2D290B13] = true;\n\t\tisHSMember[0x96F615b37843acE26fB1182ebEfa3eAb22A01BDb] = true;\n\t\tisHSMember[0x53c582B9431aBeF3F6513A136443e9304c2C21B2] = true;\n\n\t}\n\n\n\tfunction addMember (address _addr) public returns(bool) {\n\t\trequire (msg.sender == owner);\n\t\tisHSMember[_addr] = true;\n\t}\n\t\n    \n}\n",
-  "sourcePath": "/Users/ibek/Documents/code/fussball/contracts/HSteam.sol",
+  "sourcePath": "/Users/esengulov/Documents/code/fussball/contracts/HSteam.sol",
   "ast": {
-    "absolutePath": "/Users/ibek/Documents/code/fussball/contracts/HSteam.sol",
+    "absolutePath": "/Users/esengulov/Documents/code/fussball/contracts/HSteam.sol",
     "exportedSymbols": {
       "HSteam": [
         110
@@ -177,7 +177,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1537,
+                        "referencedDeclaration": 1520,
                         "src": "182:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -1260,7 +1260,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1537,
+                            "referencedDeclaration": 1520,
                             "src": "1098:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -1314,10 +1314,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1540,
-                        1541
+                        1523,
+                        1524
                       ],
-                      "referencedDeclaration": 1540,
+                      "referencedDeclaration": 1523,
                       "src": "1089:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1510,7 +1510,7 @@
     "src": "2:1158:0"
   },
   "legacyAST": {
-    "absolutePath": "/Users/ibek/Documents/code/fussball/contracts/HSteam.sol",
+    "absolutePath": "/Users/esengulov/Documents/code/fussball/contracts/HSteam.sol",
     "exportedSymbols": {
       "HSteam": [
         110
@@ -1652,7 +1652,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1537,
+                        "referencedDeclaration": 1520,
                         "src": "182:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -2735,7 +2735,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1537,
+                            "referencedDeclaration": 1520,
                             "src": "1098:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -2789,10 +2789,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1540,
-                        1541
+                        1523,
+                        1524
                       ],
-                      "referencedDeclaration": 1540,
+                      "referencedDeclaration": 1523,
                       "src": "1089:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2990,7 +2990,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-04T18:23:16.743Z",
+  "updatedAt": "2019-09-05T08:39:39.835Z",
   "devdoc": {
     "methods": {}
   },
