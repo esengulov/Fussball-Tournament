@@ -75,7 +75,7 @@ module.exports = async function(deployer) {
 
 	// LIST TEAMS
 	var listTeams = async function() {
-		console.log("*** TEAMS ***");
+		console.log("*** TEAMS ***",  "color: blue");
 		for (var i = 1; i <= settings.teamCount; i++) {
 			team = await tournament.getTeam(i-1);
 			console.log("Team " + i + ":" + team[0] + " and " + team[1]);
@@ -111,6 +111,13 @@ module.exports = async function(deployer) {
 	};
 	await runGames();
 	await getStatus();
+
+
+	// DISPLAY WINNERS
+	var getWinners = async function() {
+
+		console.log();
+	}
 
 
 };

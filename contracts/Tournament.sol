@@ -2,6 +2,11 @@ pragma solidity ^0.5.1;
 
 import "./HSteam.sol";
 
+    // TO DO
+    // try deploying on proper testnet (rinkeby, kovan)
+    // make sure that team allocations are random
+    // run trials
+
 contract Tournament is HSteam {
 
 
@@ -18,7 +23,7 @@ contract Tournament is HSteam {
     }
     
     Team[] teams;
-
+    uint[] winnerTeams;
 
     // TRACKING PLAYERS
     struct Player {
@@ -31,6 +36,7 @@ contract Tournament is HSteam {
   
     mapping (address => bool) isPlayer;
     Player[] players;
+    uint[] winners;
     
     
     // TRACKING GAMES
@@ -148,22 +154,7 @@ contract Tournament is HSteam {
         players[_id].inTeam = true;
         assert (players[_id].inTeam == true);
     }
-    
-    function _finishTournament() internal returns(bool) {
-  
-            require(registrationOpen == false);               
-            require(tournamentOn == true);
-            require(winnerSelection == false);
-            require(gamesPlayed == games.length);
-                   
-            //currentGame = 100;
-            tournamentOn = false;               
-            winnerSelection = true;
-            assert(currentGame == 100 && winnerSelection == true && tournamentOn == false);       
-
-            //_selectWinners();
-            return true;
-    }    
+        
     
     function _startTournament () internal {
 
@@ -191,6 +182,38 @@ contract Tournament is HSteam {
         // guarantee execution of the following method
         require(selectGame());
     } 
+    
+   
+    function _calculateWinners() internal returns(bool) {
+
+        require(currentGame == 100);
+
+        uint _mostGoals = 0;
+        uint _mostWins = 0;
+
+        for (uint i = 0; i< players.length; i++) {    
+            if(players[i].goalsScored > _mostGoals) {
+            _mostGoals = players[i].goalsScored;
+            winners.push(winnerPlayerIndex);
+            winnerPlayerIndex = i;
+            }
+        }
+
+        for (uint k = 0; k< teams.length; k++) {       
+            if(teams[k].gamesWon > _mostWins) {
+            _mostWins = teams[k].gamesWon;
+            winnerTeams.push(winnerTeamIndex);
+            winnerTeamIndex = k;         
+            }    
+        }       
+
+        winnerSelection = true;
+        return true;   
+    }
+
+
+
+
 
    // enable contract to accept ether transactions
     function() external payable {}
@@ -240,19 +263,13 @@ contract Tournament is HSteam {
     }
     
     function selectGame() public onlyHS returns(bool) {
-
-
-        //require (gamesPlayed <= games.length);
         
-        require(registrationOpen == false);       
-        require(tournamentOn == true);
-        require(winnerSelection == false);
-
-        
+        require(registrationOpen == false && tournamentOn == true && winnerSelection == false);       
+    
         if(gamesPlayed == games.length) {
  
                 currentGame = 100;
-                _finishTournament();
+                require(_calculateWinners());
                 return true;           
            
         } else {
@@ -359,10 +376,7 @@ contract Tournament is HSteam {
     }
 
 
-    // TO DO
-    // try deploying on proper testnet (rinkeby, kovan)
-    // make sure that team allocations are random
-    // run trials
+
 
     function getTeam(uint _id) public view onlyHS returns(uint, uint, uint, uint, uint, uint) {
         uint _player1 = teams[_id].player1;
@@ -418,138 +432,18 @@ contract Tournament is HSteam {
 
     }
    
+
+   
+
    
    
 
-   
-   
-        // function _selectWinners() internal returns(bool) {
-           
-        //     require(currentGame == 100);
-        //     require(tournamentOn == false && registrationOpen == false && winnerSelection == true);
-    
-        //     require(_calculateBestTeam());
-        //     require(_calculateBestPlayer());
-        
-        //     require(winnerTeamIndex != 100 && winnerPlayerIndex != 100);
-            
-        //     winnerSelection = false;
-        //     return true;
-        // }
-        
-                
-        // function _calculateBestTeam() internal returns(bool) {
-            
-        //     uint mostWinsByTeam = 0;
-           
-        //     for (uint i = 0; i< teams.length; i++) {
-               
-        //         if(teams[i].gamesWon > mostWinsByTeam) {
-        //             mostWinsByTeam = teams[i].gamesWon;
-        //             winnerTeamIndex = i;
-                    
-        //         } else if (teams[i].gamesWon == mostWinsByTeam && teams[i].gamesWon != 0) {
-                    
-        //             if(teams[i].goalsScored > teams[winnerTeamIndex].goalsScored) {
-                        
-        //                 winnerTeamIndex = i;
-                        
-        //             } else if(teams[i].goalsScored == teams[winnerTeamIndex].goalsScored) {
-                        
-        //                 //compare goals missed parameter
-        //                 if(teams[i].goalsMissed < teams[winnerTeamIndex].goalsMissed) {
-    
-        //                     winnerTeamIndex = i;
-                            
-        //                 } else if (teams[i].goalsMissed == teams[winnerTeamIndex].goalsMissed) {
-                            
-        //                     // when there are two equal teams then there is no winner
-        //                     winnerTeamIndex = 100;
-        //                 }
-        //             }
-        //         }
-                
-        //     }
-            
-        
-        //     if (mostWinsByTeam == 0) {
-        //         winnerTeamIndex = 100;
-        //     }
-            
-        //     return true;
-        // }   
-       
-       
-        // function _calculateBestPlayer() internal returns(bool) {
-            
-        //     uint _mostGoals = 0;
-            
-        //     for (uint i = 0; i< players.length; i++) {
-               
-        //         if(players[i].goalsScored > _mostGoals) {
-        //           _mostGoals = players[i].goalsScored;
-        //           winnerPlayerIndex = i;
-                 
-        //         } else if (players[i].goalsScored == _mostGoals && _mostGoals != 0) {
-                    
-        //             winnerPlayerIndex = 100;
-            
-        //         }
-        //     }
-            
-        //     if (_mostGoals == 0) {
-        //         winnerPlayerIndex = 100;
-        //     }
-            
-        //     return true;
-        // }   
-
-
-        // allows captain of the winner team to withdraw entire balance
-        // function claimTeamPrize() public returns(bool) {
-
-        //     require(winnerTeamIndex != 100);
-        //     require(tournamentOn == false && registrationOpen == false && winnerSelection == false);
-           
-        //     uint _winnerTeamCapID = teams[winnerTeamIndex].player1;
-        //     address payable _teamCapAddress = players[_winnerTeamCapID].addr;
-        //     require (msg.sender == _teamCapAddress);
-            
-        //     uint _balance = address(this).balance;
-        //     _teamCapAddress.transfer(_balance);
-        //     // add assertion to check for contracts balance
-        //     return true;                      
-            
-        // }
-  
-   
-     
-
-
-
-  
-   
 
 
 
 
 
 
-
-
-
-
-       
-   
-   
-
-    
-
-    function getWinners() public view returns(string memory, address) {
-        address _winnerPlayer = players[winnerPlayerIndex].addr;
-        string memory _winnerTeamName = teams[winnerTeamIndex].name;
-        return (_winnerTeamName, _winnerPlayer);
-    } 
 
     
 }
