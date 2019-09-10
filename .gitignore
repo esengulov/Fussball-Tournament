@@ -1,1 +1,3 @@
 toRemove/
+.secret
+node_modules/

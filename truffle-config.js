@@ -24,6 +24,16 @@
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
+
+// HD wallet provider for Truffle 
+const HDWalletProvider = require('truffle-hdwallet-provider');
+ 
+// MNEMONIC has to be set as environment variable in OS terminal 
+// thw HD wallet below was created for testing purposes, do not use it on production
+// ntoe to self: this key should never be visible to public
+const mnemonic = "bounce chief track husband able time split glory dirt tattoo edge analyst";
+
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -47,6 +57,54 @@ module.exports = {
      port: 8545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
+
+
+    // ropsten
+    ropsten: {
+      // must be a thunk, otherwise truffle commands may hang in CI
+      provider: () =>
+        new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/2c4a9f4ba2254aa2a8df3963c227a9d2",
+            0, 1, true, "m/44'/1'/0'/0/"
+        ),
+      network_id: '3'
+      //   gasPrice: 20000000000, // 20 GWEI
+      //   gas: 3716887 // gas limit, set any number you want
+    }//,
+
+
+    // rinkeby: {
+    //   provider: function() {
+    //     return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/your-api-key");
+    //   },
+    //   network_id: 4,
+    //   gasPrice: 20000000000, // 20 GWEI
+    //   gas: 3716887 // gas limit, set any number you want    
+    //
+    // },
+    // kovan: {
+    //   provider: function() {
+    //     return new HDWalletProvider(mnemonic, "https://kovan.infura.io/your-api-key");
+    //   },
+    //   network_id: 42,
+    //   gasPrice: 20000000000, // 20 GWEI
+    //   gas: 3716887 // gas limit, set any number you want
+    // },
+    // main: {
+    //   provider: function() {
+    //     return new HDWalletProvider(mnemonic, "https://mainnet.infura.io/your-api-key");
+    //   },
+    //   network_id: 1,
+    //   gasPrice: 20000000000, // 20 GWEI
+    //   gas: 3716887 // gas limit, set any number you want
+    // }
+
+
+
+
+
+
+
+
 
     // Another network with more advanced options...
     // advanced: {
