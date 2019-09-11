@@ -12,10 +12,17 @@ var settings = {
 
 module.exports = async function(deployer) {
 
-	await deployer.deploy(Tournament, settings.entryfee, settings.teamCount);
+	// getting accounts
+	let accounts = await web3.eth.getAccounts();
 
+	await deployer.deploy(Tournament, settings.entryfee, settings.teamCount, {from: accounts[0]});
+	console.log(accounts[0])
 	// checking deployment
 	let tournament = await Tournament.deployed();
+
+
+
+
 	var getStatus = async function() {
 
 		console.log("*** CONTRACT STATUS ***");
@@ -38,8 +45,6 @@ module.exports = async function(deployer) {
 	await getStatus();
 
 
-	// getting accounts
-	let accounts = await web3.eth.getAccounts();
 
 
 	// ADD DUMMY HS MEMBERS

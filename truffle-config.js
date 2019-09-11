@@ -64,7 +64,7 @@ module.exports = {
       // must be a thunk, otherwise truffle commands may hang in CI
       provider: () =>
         new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/2c4a9f4ba2254aa2a8df3963c227a9d2",
-            0, 1, true, "m/44'/1'/0'/0/"
+            0, 20, true, "m/44'/1'/0'/0/"
         ),
       network_id: '3'
       //   gasPrice: 20000000000, // 20 GWEI
