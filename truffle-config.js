@@ -26,7 +26,7 @@
 
 
 // HD wallet provider for Truffle 
-const HDWalletProvider = require('truffle-hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
  
 // MNEMONIC has to be set as environment variable in OS terminal 
 // thw HD wallet below was created for testing purposes, do not use it on production
@@ -58,14 +58,10 @@ module.exports = {
      network_id: "*",       // Any network (default: none)
     },
 
-
-    // ropsten
     ropsten: {
-      // must be a thunk, otherwise truffle commands may hang in CI
-      provider: () =>
-        new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/2c4a9f4ba2254aa2a8df3963c227a9d2",
-            0, 20, true, "m/44'/1'/0'/0/"
-        ),
+      provider: function() {
+          return new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/2c4a9f4ba2254aa2a8df3963c227a9d2", 0, 20, true, "m/44'/1'/0'/0/");
+      },
       network_id: '3'
       //   gasPrice: 20000000000, // 20 GWEI
       //   gas: 3716887 // gas limit, set any number you want

@@ -14,9 +14,9 @@ module.exports = async function(deployer) {
 
 	// getting accounts
 	let accounts = await web3.eth.getAccounts();
+	//console.log(accounts);
 
 	await deployer.deploy(Tournament, settings.entryfee, settings.teamCount, {from: accounts[0]});
-	console.log(accounts[0])
 	// checking deployment
 	let tournament = await Tournament.deployed();
 
@@ -51,7 +51,7 @@ module.exports = async function(deployer) {
 	var addMembers = async function(){
 		console.log(">> adding dummy HS members");	
 		for (var i = 1; i <= settings.teamCount*2; i++) {
-			await tournament.addMember(accounts[i-1], {from: accounts[0]});
+			await tournament.addMember(accounts[i-1],{from: accounts[0]});
 		}
 	}
 	await addMembers();
